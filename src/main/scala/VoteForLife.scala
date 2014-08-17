@@ -40,7 +40,7 @@ class VoteForLifeEngine( lives: Set[Int] ) extends CAEngine
 	
 	val colors = Seq( DARK_GRAY.darker.darker, WHITE )
 	
-	val alive = 1
+	val maxValue = 1
 	
 	override def toString = s"""Vote for Life [lives: {${lives.toList.sorted.mkString(",")}}]"""
 }

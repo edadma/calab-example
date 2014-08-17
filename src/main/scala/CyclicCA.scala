@@ -41,9 +41,9 @@ class CyclicCAEngine( range: Int, threshold: Int, count: Int, moore: Boolean ) e
 		u.write( x, y, if (neighbours >= threshold) next else state )
 	}
 	
-	val colors = Seq( DARK_GRAY.darker.darker, WHITE ) ++ HSL.shading( .6, 1, count - 1, .3 )
+	val maxValue = count - 1
 	
-	val alive = 1
+	val colors = Seq( DARK_GRAY.darker.darker ) ++ HSL.shading( .6, 1, maxValue, .3 )
 	
 	override def toString = s"""Cyclic CA [range: $range, threshold: $threshold, count: $count, neighbourhood: ${if (moore) "Moore" else "von Neumann"}]"""
 }
