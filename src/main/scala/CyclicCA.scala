@@ -34,14 +34,14 @@ class CyclicCAEngine( range: Int, threshold: Int, count: Int, moore: Boolean ) e
 	val state = u.read( x, y )
 	val next = (state + 1)%count
 	
-		for (i <- -1 to 1; j <- -1 to 1 if !(i == 0 && j == 0))
+		for (i <- -range to range; j <- -range to range if !(i == 0 && j == 0))
 			if (u.read( x + i, y + j ) == next)
 				neighbours += 1 
 
-		u.write( x, y, if (neighbours >= threshold) next else 0 )
+		u.write( x, y, if (neighbours >= threshold) next else state )
 	}
 	
-	val colors = HSL.shading( .6, 1, count, .3 )
+	val colors = Seq( DARK_GRAY.darker.darker, WHITE ) ++ HSL.shading( .6, 1, count - 1, .3 )
 	
 	val alive = 1
 	
