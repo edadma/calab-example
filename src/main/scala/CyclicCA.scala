@@ -34,9 +34,21 @@ class CyclicCAEngine( range: Int, threshold: Int, count: Int, moore: Boolean ) e
 	val state = u.read( x, y )
 	val next = (state + 1)%count
 	
-		for (i <- -range to range; j <- -range to range if !(i == 0 && j == 0))
-			if (u.read( x + i, y + j ) == next)
+		def bump( xoffset: Int, yoffset: Int ) =
+			if (u.read( x + xoffset, y + yoffset ) == next)
 				neighbours += 1 
+
+		if (moore)
+			for (i <- -range to range; j <- -range to range if !(i == 0 && j == 0))
+				bump( i, j )
+		else
+		{
+			for (i <- -range + 1 to range - 1; j <- -range + 1 to range - 1 if !(i == 0 && j == 0))
+				bump( i, j )
+			
+			for ((i, j) <- List((-range,0), (0, -range), (range, 0 ), (0, range)))
+				bump( i, j )
+		}
 
 		u.write( x, y, if (neighbours >= threshold) next else state )
 	}
