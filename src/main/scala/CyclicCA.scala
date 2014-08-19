@@ -4,14 +4,14 @@ import java.awt.Color
 import Color._
 import ca.hyperreal.color.HSL
 
-import  ca.hyperreal.calab.{CAEngineConstructor, CAEngine, Universe}
+import ca.hyperreal.calab.{CAEngineConstructor, CAEngine, Universe}
 
 
 class CyclicCA extends CAEngineConstructor
 {
 	val RULE = """R(\d+)/T(\d+)/C(\d+)/N(N|M)(?:/(GH))?"""r
 	
-	def apply( rule: String ) =
+	def instance( rule: String ) =
 	{
 		if (RULE.pattern.matcher( rule ).matches)
 		{
@@ -28,7 +28,7 @@ class CyclicCA extends CAEngineConstructor
 
 class CyclicCAEngine( range: Int, threshold: Int, count: Int, moore: Boolean, gh: Boolean ) extends CAEngine
 {
-	def apply( x: Int, y: Int, u: Universe )
+	def update( x: Int, y: Int, u: Universe )
 	{
 	var neighbours = 0
 	val state = u.read( x, y )
@@ -38,7 +38,7 @@ class CyclicCAEngine( range: Int, threshold: Int, count: Int, moore: Boolean, gh
 			if (u.read( x + xoffset, y + yoffset ) == next)
 				neighbours += 1 
 
-		if (gh && state == 0)
+		if (!gh || gh && state == 0)
 		{
 			if (moore)
 				for (i <- -range to range; j <- -range to range if !(i == 0 && j == 0))
@@ -60,7 +60,7 @@ class CyclicCAEngine( range: Int, threshold: Int, count: Int, moore: Boolean, gh
 	
 	val maxValue = count - 1
 	
-	val colors = Seq( DARK_GRAY.darker.darker ) ++ HSL.shading( .6, 1, maxValue, .3 )
+	val colors = Array( DARK_GRAY.darker.darker ) ++ HSL.shading( .6, 1, maxValue, .3 )
 	
 	override def toString = s"""Cyclic CA [range: $range, threshold: $threshold, count: $count, neighbourhood: ${if (moore) "Moore" else "von Neumann"}""" +
 		(if (gh) ", Greenberg-Hastings" else "")
