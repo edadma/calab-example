@@ -9,7 +9,7 @@ Using this Repository to Run CCA's or Vote CA's
 
 The easiest way to use this repository is to use the Simple Build Tool (SBT), and Git of course.  We will assume that you're setup to use Git and SBT.  Start by cloneing the project.
 
-	git clone
+	git clone https://github.com/edadma/calab-example.git
 	
 Then go in to the newly created directory and start SBT.
 
@@ -20,4 +20,4 @@ Now you can run CALab and have it load the CCA engine provided by this repo with
 
 	run -e ca.hyperreal.calabexample.CyclicCA
 
-SBT will cause the source files in this repo to be compiled, download CALab and then ensure that CALab will be able to find CyclicCA to load it.
+SBT will cause the source files in this repo to be compiled, download CALab and then ensure that CALab will be able to find CyclicCA to load it, and then run CALab with CyclicCA loaded.
