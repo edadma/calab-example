@@ -2,7 +2,7 @@ package ca.hyperreal.calabexample
 
 import java.awt.Color
 import Color._
-import ca.hyperreal.color.HSL
+import ca.hyperreal.hsl.HSL
 
 import ca.hyperreal.calab.{CAEngineConstructor, CAEngine, Universe}
 
