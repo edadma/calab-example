@@ -7,7 +7,7 @@ This repository shows how to setup a class of cellular automata not currently in
 Using this Repository to Run CCA's or Vote CA's
 -----------------------------------------------
 
-The easiest way to use this repository is to use the Simple Build Tool (SBT), and Git of course.  We will assume that you're setup to use Git and SBT.  Start by cloneing the project.
+The easiest way to use this repository is to use the Simple Build Tool (SBT), and Git of course.  We will assume that you're setup to use Git and SBT.  Start by cloning the repo.
 
 	git clone https://github.com/edadma/calab-example.git
 	
